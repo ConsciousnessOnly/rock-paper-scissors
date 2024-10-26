@@ -84,7 +84,7 @@ function playRound(humanChoice, computerChoice){
                 showCurrentScore();
                 break;
             case "rock":
-                log(humanWin + paperWin);
+                showWinner(humanWin, paperWin);
                 addHumanScore();
                 showCurrentScore();
                 break;
