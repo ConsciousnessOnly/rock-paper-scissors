@@ -1,5 +1,7 @@
 // console.log("Hello World");
 const log = console.log;
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     const number = Math.random() * 100;
