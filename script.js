@@ -66,9 +66,13 @@ function playRound(humanChoice, computerChoice){
         switch (computerChoice){
             case "paper":
                 log(computerWin + paperWin);
+                addComputerScore();
+                showCurrentScore();
                 break;
             case "scissors":
                 log(humanWin + rockWin);
+                addHumanScore();
+                showCurrentScore();
                 break;
         }
     }
@@ -76,9 +80,13 @@ function playRound(humanChoice, computerChoice){
         switch (computerChoice){
             case "scissors":
                 log(computerWin + scissorsWin);
+                addComputerScore();
+                showCurrentScore();
                 break;
             case "rock":
                 log(humanWin + paperWin);
+                addHumanScore();
+                showCurrentScore();
                 break;
         }
     }
@@ -86,11 +94,27 @@ function playRound(humanChoice, computerChoice){
         switch (computerChoice){
             case "rock":
                 log(computerWin + rockWin);
+                addComputerScore();
+                showCurrentScore();
                 break;
             case "paper":
                 log(humanWin + paperWin);
+                addHumanScore();
+                showCurrentScore();
                 break;
         }
     }
 }
-// playRound("paper", "paper");
+playRound("scissors", "paper");
+
+function showCurrentScore(){
+    log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+}
+
+function addComputerScore(){
+    computerScore += 1;
+}
+
+function addHumanScore(){
+    humanScore += 1;
+}
