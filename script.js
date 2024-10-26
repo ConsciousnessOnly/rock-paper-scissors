@@ -65,12 +65,12 @@ function playRound(humanChoice, computerChoice){
     else if (humanChoice === "rock"){
         switch (computerChoice){
             case "paper":
-                log(computerWin + paperWin);
+                showWinner(computerWin, paperWin);
                 addComputerScore();
                 showCurrentScore();
                 break;
             case "scissors":
-                log(humanWin + rockWin);
+                showWinner(humanWin, rockWin);
                 addHumanScore();
                 showCurrentScore();
                 break;
@@ -79,7 +79,7 @@ function playRound(humanChoice, computerChoice){
     else if (humanChoice === "paper"){
         switch (computerChoice){
             case "scissors":
-                log(computerWin + scissorsWin);
+                showWinner(computerWin, scissorsWin);
                 addComputerScore();
                 showCurrentScore();
                 break;
@@ -93,12 +93,12 @@ function playRound(humanChoice, computerChoice){
     else if (humanChoice === "scissors"){
         switch (computerChoice){
             case "rock":
-                log(computerWin + rockWin);
+                showWinner(computerWin, rockWin);
                 addComputerScore();
                 showCurrentScore();
                 break;
             case "paper":
-                log(humanWin + paperWin);
+                showWinner(humanWin, paperWin);
                 addHumanScore();
                 showCurrentScore();
                 break;
@@ -106,6 +106,10 @@ function playRound(humanChoice, computerChoice){
     }
 }
 playRound("scissors", "paper");
+
+function showWinner(msgWinner, msgSelection){
+    log(msgWinner + msgSelection);
+}
 
 function showCurrentScore(){
     log(`Human: ${humanScore} vs Computer: ${computerScore}`);
