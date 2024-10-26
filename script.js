@@ -26,3 +26,22 @@ function testComputerChoice(){
 // testComputerChoice();
 // log(getComputerChoice());
 
+function getHumanChoice(){
+    let humanSelection = prompt("Please choose from Rock, Paper, Scissors",'');
+    log("Before change: " + humanSelection);
+
+    humanSelection = (humanSelection === null) ? getHumanChoice() : 
+                    humanSelection.toLowerCase();
+    log("After change: " + humanSelection);    
+    
+    switch (humanSelection){
+         case "rock":
+         case "paper":
+         case "scissors":
+             return humanSelection;
+        
+         default : getHumanChoice();
+    }
+}
+// getHumanChoice();
+// log("You choose: " + getHumanChoice());
