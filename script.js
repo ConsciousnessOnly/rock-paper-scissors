@@ -5,14 +5,15 @@ playGame();
 function playGame() {
     const humanSelection = getHumanChoice;
     const computerSelection = getComputerChoice;
-    let round = 1;
     let humanScore = 0;
     let computerScore = 0;
 
     startRound();
     displayWinner(humanScore, computerScore);
 
-    function startRound(){
+    function startRound(){        
+        let round = 1;
+        
         while (round <= 5) {
             console.group(`Round: ${round}`)
             playRound(humanSelection(), computerSelection());
