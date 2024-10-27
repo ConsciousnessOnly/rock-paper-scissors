@@ -22,7 +22,8 @@ function playGame() {
     }    
 
     function displayWinner(humanScore, computerScore) {
-        log("😇 Final score 😇");
+        // log("😇 Final score 😇");
+        console.group("😇 Final score 😇")
         log(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
         if (humanScore + computerScore === 5) {
@@ -36,6 +37,7 @@ function playGame() {
         else {
             log("What's going on? 😱 The total scores (human + computer) must equal 5...");
         }
+        console.groupEnd("😇 Final score 😇");
     }
     // displayWinner(3, 2);
     // displayWinner(2, 3);
