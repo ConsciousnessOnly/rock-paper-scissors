@@ -1,14 +1,15 @@
-// console.log("Hello World");
 const log = console.log;
 
 function playGame() {
+    const humanSelection = getHumanChoice;
+    const computerSelection = getComputerChoice;
     let round = 1;
     let humanScore = 0;
-    let computerScore = 0;
+    let computerScore = 0; 
 
     while (round <= 5) {
         console.group(`Round: ${round}`)
-        playRound(getHumanChoice(), getComputerChoice());
+        playRound(humanSelection(), computerSelection());
         console.groupEnd(`Round: ${round}`)
         round++;
     }
@@ -22,7 +23,7 @@ function playGame() {
 
         if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
-            playRound(getHumanChoice(), getComputerChoice());
+            playRound(humanSelection(), computerSelection());
         }
         else if (humanChoice === "rock") {
             switch (computerChoice) {
@@ -65,6 +66,22 @@ function playGame() {
                     showCurrentScore();
                     break;
             }
+        }
+
+        function showWinner(msgWinner, msgSelection) {
+            log(msgWinner + msgSelection);
+        }
+    
+        function showCurrentScore() {
+            log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+        }
+    
+        function addComputerScore() {
+            computerScore += 1;
+        }
+    
+        function addHumanScore() {
+            humanScore += 1;
         }
     }
     // playRound("scissors", "paper");
@@ -115,23 +132,7 @@ function playGame() {
         }
     }
     // getHumanChoice();
-    // log("You choose: " + getHumanChoice());
-
-    function showWinner(msgWinner, msgSelection) {
-        log(msgWinner + msgSelection);
-    }
-
-    function showCurrentScore() {
-        log(`Human: ${humanScore} vs Computer: ${computerScore}`);
-    }
-
-    function addComputerScore() {
-        computerScore += 1;
-    }
-
-    function addHumanScore() {
-        humanScore += 1;
-    }
+    // log("You choose: " + getHumanChoice()); 
 }
 
-// playGame();
+playGame();
