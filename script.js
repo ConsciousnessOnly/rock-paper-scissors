@@ -13,7 +13,7 @@ function playGame() {
 
     function startRound(){        
         let round = 1;
-        
+
         while (round <= 5) {
             console.group(`Round: ${round}`)
             playRound(humanSelection(), computerSelection());
@@ -23,7 +23,6 @@ function playGame() {
     }    
 
     function displayWinner(humanScore, computerScore) {
-        // log("😇 Final score 😇");
         console.group("😇 Final score 😇")
         log(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
