@@ -1,36 +1,38 @@
 const log = console.log;
 
+playGame();
+
 function playGame() {
     const humanSelection = getHumanChoice;
     const computerSelection = getComputerChoice;
     let round = 1;
     let humanScore = 0;
-    let computerScore = 0; 
+    let computerScore = 0;
 
-    // while (round <= 5) {
-    //     console.group(`Round: ${round}`)
-    //     // playRound(humanSelection(), computerSelection());
-    //     console.groupEnd(`Round: ${round}`)
-    //     round++;
-    // }
+    while (round <= 5) {
+        console.group(`Round: ${round}`)
+        playRound(humanSelection(), computerSelection());
+        console.groupEnd(`Round: ${round}`)
+        round++;
+    }
 
-    // displayWinner(humanScore, computerScore);
-    
-    function displayWinner(humanScore, computerScore){
+    displayWinner(humanScore, computerScore);
+
+    function displayWinner(humanScore, computerScore) {
         log("😇 Final score 😇");
         log(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
-        if (humanScore + computerScore === 5){
-            if (humanScore > computerScore){
+        if (humanScore + computerScore === 5) {
+            if (humanScore > computerScore) {
                 log("🏆 The Winner is: Human! 🏆");
             }
-            else if (computerScore > humanScore){
+            else if (computerScore > humanScore) {
                 log("🏆 The Winner is: Computer! 🏆");
             }
         }
-        else{
+        else {
             log("What's going on? 😱 The total scores (human + computer) must equal 5...");
-        }        
+        }
     }
     // displayWinner(3, 2);
     // displayWinner(2, 3);
@@ -44,11 +46,7 @@ function playGame() {
         const paperWin = "Paper beats Rock";
         const scissorsWin = "Scissors beats Paper";
 
-        if (!humanChoice || !computerChoice){
-            !humanChoice ? log('humanChoice is null') : log('computerChoice is null');
-            playRound(humanSelection(), computerSelection());
-        }
-        else if (humanChoice === computerChoice) {
+        if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
             playRound(humanSelection(), computerSelection());
         }
@@ -92,38 +90,39 @@ function playGame() {
                     addHumanScore();
                     showCurrentScore();
                     break;
-            }        
+            }
         }
 
         function showWinner(msgWinner, msgSelection) {
             log(msgWinner + msgSelection);
         }
-    
+
         function showCurrentScore() {
             log(`Human: ${humanScore} vs Computer: ${computerScore}`);
         }
-    
+
         function addComputerScore() {
             computerScore += 1;
         }
-    
+
         function addHumanScore() {
             humanScore += 1;
         }
     }
 
-    function testPlayRound(){
-        // playRound("rock", "rock");
-        // playRound("rock", "paper");
-        // playRound("rock", "scissors");
+    // testPlayRound();
+    function testPlayRound() {
+        playRound("rock", "rock");
+        playRound("rock", "paper");
+        playRound("rock", "scissors");
 
-        // playRound("paper", "rock");
-        // playRound("paper", "paper");
-        // playRound("paper", "scissors");
+        playRound("paper", "rock");
+        playRound("paper", "paper");
+        playRound("paper", "scissors");
 
-        // playRound("scissors", "rock");
-        // playRound("scissors", "paper");
-        // playRound("scissors", "scissors");
+        playRound("scissors", "rock");
+        playRound("scissors", "paper");
+        playRound("scissors", "scissors");
 
         playRound(null, "rock");
         playRound(null, "paper");
@@ -132,12 +131,11 @@ function playGame() {
         playRound("rock", null);
         playRound("paper", null);
         playRound("scissors", null);
-    }
-    // testPlayRound();
+    }    
 
     function getComputerChoice() {
         const number = Math.random() * 100;
-        log("Random number is : " + number);
+        // log("Random number is : " + number);
 
         if (number <= 33) {
             log("Computer choose: rock");
@@ -153,35 +151,50 @@ function playGame() {
         }
     }
 
+    // testComputerChoice();
     function testComputerChoice() {
         let count = 1;
         while (count <= 30) {
             log(getComputerChoice());
             count++;
         }
-    }
-    // testComputerChoice();
-    // log(getComputerChoice());
+    }    
 
+    // log(getHumanChoice());
     function getHumanChoice() {
-        let humanSelection = prompt("Please choose from Rock, Paper, Scissors", '');
-        log("You choose(before change): " + humanSelection);
-
-        humanSelection = (humanSelection === null) ? getHumanChoice() :
-            humanSelection.toLowerCase();
-        log("You choose(after change): " + humanSelection);
-
-        switch (humanSelection) {
-            case "rock":
-            case "paper":
-            case "scissors":
-                return humanSelection;
-
-            default: getHumanChoice();
+        let humanChoice = prompt("Please choose from Rock, Paper, Scissors", '');
+        
+        if (isEmpty(humanChoice)) {
+            log('You Input Empty, please Input again.');
+            // playRound(humanSelection(), computerSelection());
+            return getHumanChoice();
         }
-    }
-    // getHumanChoice();
-    // log("You choose: " + getHumanChoice()); 
-}
+        else if (isRock(humanChoice) ||
+            isPaper(humanChoice) ||
+            isScissors(humanChoice)) {
+            log(`You Input ${humanChoice}.`);
+            return humanChoice.toLowerCase();
+        }
+        else {
+            log("Input again!");
+            // playRound(humanSelection(), computerSelection());
+            return getHumanChoice();
+        }
+    }    
 
-playGame();
+    function isEmpty(string) {
+        return !string
+    }
+
+    function isRock(string) {
+        return (string.toLowerCase() === 'rock') ? true : false;
+    }
+
+    function isPaper(string) {
+        return (string.toLowerCase() === 'paper') ? true : false;
+    }
+
+    function isScissors(string) {
+        return (string.toLowerCase() === 'scissors') ? true : false;
+    }
+}
