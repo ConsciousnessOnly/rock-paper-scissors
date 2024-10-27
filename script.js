@@ -44,9 +44,13 @@ function playGame() {
         const paperWin = "Paper beats Rock";
         const scissorsWin = "Scissors beats Paper";
 
-        if (humanChoice === computerChoice) {
+        if (!humanChoice || !computerChoice){
+            !humanChoice ? log('humanChoice is null') : log('computerChoice is null');
+            playRound(humanSelection(), computerSelection());
+        }
+        else if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
-            // playRound(humanSelection(), computerSelection());
+            playRound(humanSelection(), computerSelection());
         }
         else if (humanChoice === "rock") {
             switch (computerChoice) {
