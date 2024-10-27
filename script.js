@@ -17,19 +17,19 @@ function playGame() {
     displayWinner(humanScore, computerScore);
     
     function displayWinner(humanScore, computerScore){
-        log("Final score");
-        log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+        log("😇 Final score 😇");
+        log(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
         if (humanScore + computerScore === 5){
             if (humanScore > computerScore){
-                log("The Winner is: Human!");
+                log("🏆 The Winner is: Human! 🏆");
             }
             else if (computerScore > humanScore){
-                log("The Winner is: Computer!");
+                log("🏆 The Winner is: Computer! 🏆");
             }
         }
         else{
-            log("What's going on? The total scores (human + computer) must equal 5...");
+            log("What's going on? 😱 The total scores (human + computer) must equal 5...");
         }        
     }
     // displayWinner(3, 2);
