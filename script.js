@@ -7,14 +7,14 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0; 
 
-    while (round <= 5) {
-        console.group(`Round: ${round}`)
-        // playRound(humanSelection(), computerSelection());
-        console.groupEnd(`Round: ${round}`)
-        round++;
-    }
+    // while (round <= 5) {
+    //     console.group(`Round: ${round}`)
+    //     // playRound(humanSelection(), computerSelection());
+    //     console.groupEnd(`Round: ${round}`)
+    //     round++;
+    // }
 
-    displayWinner(humanScore, computerScore);
+    // displayWinner(humanScore, computerScore);
     
     function displayWinner(humanScore, computerScore){
         log("😇 Final score 😇");
@@ -88,7 +88,7 @@ function playGame() {
                     addHumanScore();
                     showCurrentScore();
                     break;
-            }
+            }        
         }
 
         function showWinner(msgWinner, msgSelection) {
@@ -109,18 +109,27 @@ function playGame() {
     }
 
     function testPlayRound(){
-        playRound("rock", "rock");
-        playRound("rock", "paper");
-        playRound("rock", "scissors");
+        // playRound("rock", "rock");
+        // playRound("rock", "paper");
+        // playRound("rock", "scissors");
 
-        playRound("paper", "rock");
-        playRound("paper", "paper");
-        playRound("paper", "scissors");
+        // playRound("paper", "rock");
+        // playRound("paper", "paper");
+        // playRound("paper", "scissors");
 
-        playRound("scissors", "rock");
-        playRound("scissors", "paper");
-        playRound("scissors", "scissors");
-    }    
+        // playRound("scissors", "rock");
+        // playRound("scissors", "paper");
+        // playRound("scissors", "scissors");
+
+        playRound(null, "rock");
+        playRound(null, "paper");
+        playRound(null, "scissors");
+
+        playRound("rock", null);
+        playRound("paper", null);
+        playRound("scissors", null);
+    }
+    // testPlayRound();
 
     function getComputerChoice() {
         const number = Math.random() * 100;
