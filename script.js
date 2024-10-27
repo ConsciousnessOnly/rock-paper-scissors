@@ -9,14 +9,17 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    while (round <= 5) {
-        console.group(`Round: ${round}`)
-        playRound(humanSelection(), computerSelection());
-        console.groupEnd(`Round: ${round}`)
-        round++;
-    }
-
+    startRound();
     displayWinner(humanScore, computerScore);
+
+    function startRound(){
+        while (round <= 5) {
+            console.group(`Round: ${round}`)
+            playRound(humanSelection(), computerSelection());
+            console.groupEnd(`Round: ${round}`)
+            round++;
+        }
+    }    
 
     function displayWinner(humanScore, computerScore) {
         log("😇 Final score 😇");
