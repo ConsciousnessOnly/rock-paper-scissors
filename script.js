@@ -166,7 +166,6 @@ function playGame() {
         
         if (isEmpty(humanChoice)) {
             log('You Input Empty, please Input again.');
-            // playRound(humanSelection(), computerSelection());
             return getHumanChoice();
         }
         else if (isRock(humanChoice) ||
@@ -177,7 +176,6 @@ function playGame() {
         }
         else {
             log("Input again!");
-            // playRound(humanSelection(), computerSelection());
             return getHumanChoice();
         }
     }    
