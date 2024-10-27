@@ -183,21 +183,21 @@ function playGame() {
             log("Input again!");
             return getHumanChoice();
         }
-    }    
 
-    function isEmpty(string) {
-        return !string
-    }
-
-    function isRock(string) {
-        return (string.toLowerCase() === 'rock') ? true : false;
-    }
-
-    function isPaper(string) {
-        return (string.toLowerCase() === 'paper') ? true : false;
-    }
-
-    function isScissors(string) {
-        return (string.toLowerCase() === 'scissors') ? true : false;
+        function isEmpty(string) {
+            return !string
+        }
+    
+        function isRock(string) {
+            return (string.toLowerCase() === 'rock') ? true : false;
+        }
+    
+        function isPaper(string) {
+            return (string.toLowerCase() === 'paper') ? true : false;
+        }
+    
+        function isScissors(string) {
+            return (string.toLowerCase() === 'scissors') ? true : false;
+        }
     }
 }
