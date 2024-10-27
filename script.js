@@ -7,8 +7,9 @@ function playGame() {
     let computerScore = 0;
 
     while (round <= 5) {
-        log(`Round: ${round}`);
+        console.group(`Round: ${round}`)
         playRound(getHumanChoice(), getComputerChoice());
+        console.groupEnd(`Round: ${round}`)
         round++;
     }
 
@@ -116,7 +117,6 @@ function playGame() {
     // getHumanChoice();
     // log("You choose: " + getHumanChoice());
 
-
     function showWinner(msgWinner, msgSelection) {
         log(msgWinner + msgSelection);
     }
@@ -134,4 +134,4 @@ function playGame() {
     }
 }
 
-playGame();
+// playGame();
