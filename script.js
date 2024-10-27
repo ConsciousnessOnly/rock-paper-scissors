@@ -8,8 +8,8 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    startRound();
-    displayWinner(humanScore, computerScore);
+    // startRound();
+    // displayWinner(humanScore, computerScore);
 
     function startRound(){        
         let round = 1;
@@ -139,20 +139,19 @@ function playGame() {
     }    
 
     function getComputerChoice() {
-        const number = Math.random() * 100;
+        const number = Math.floor(Math.random() * 3);
         // log("Random number is : " + number);
 
-        if (number <= 33) {
-            log("Computer choose: rock");
-            return "rock"
-        }
-        else if (number <= 66) {
-            log("Computer choose: paper");
-            return "paper"
-        }
-        else {
-            log("Computer choose: scissors");
-            return "scissors"
+        switch(number){
+            case 0:
+                log("Computer choose: rock");
+                return "rock"
+            case 1:
+                log("Computer choose: paper");
+                return "paper"
+            case 2:
+                log("Computer choose: scissors");
+                return "scissors"
         }
     }
 
