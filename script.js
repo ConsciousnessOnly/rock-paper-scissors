@@ -9,7 +9,7 @@ function playGame() {
 
     while (round <= 5) {
         console.group(`Round: ${round}`)
-        playRound(humanSelection(), computerSelection());
+        // playRound(humanSelection(), computerSelection());
         console.groupEnd(`Round: ${round}`)
         round++;
     }
@@ -46,7 +46,7 @@ function playGame() {
 
         if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
-            playRound(humanSelection(), computerSelection());
+            // playRound(humanSelection(), computerSelection());
         }
         else if (humanChoice === "rock") {
             switch (computerChoice) {
@@ -107,7 +107,20 @@ function playGame() {
             humanScore += 1;
         }
     }
-    // playRound("scissors", "paper");
+
+    function testPlayRound(){
+        playRound("rock", "rock");
+        playRound("rock", "paper");
+        playRound("rock", "scissors");
+
+        playRound("paper", "rock");
+        playRound("paper", "paper");
+        playRound("paper", "scissors");
+
+        playRound("scissors", "rock");
+        playRound("scissors", "paper");
+        playRound("scissors", "scissors");
+    }    
 
     function getComputerChoice() {
         const number = Math.random() * 100;
