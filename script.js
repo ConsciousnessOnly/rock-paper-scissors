@@ -42,7 +42,7 @@ function playGame() {
     // displayWinner(3, 3);
     // displayWinner(2, 2);
 
-    playRound();
+    // playRound();
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
         if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
             log("Input is empty! Try again.");
@@ -53,7 +53,8 @@ function playGame() {
             playRound();
         }
         else {
-            switch (isRock(humanChoice) && isScissors(computerChoice) ||
+            switch (
+            isRock(humanChoice) && isScissors(computerChoice) ||
             isPaper(humanChoice) && isRock(computerChoice) ||
             isScissors(humanChoice) && isPaper(computerChoice)) {
                 case true:
