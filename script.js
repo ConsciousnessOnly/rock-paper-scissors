@@ -44,28 +44,25 @@ function playGame() {
 
     playRound();
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
-        if(isEmpty(humanChoice) || isEmpty(computerChoice)) {
+        if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
             log("Input is empty! Try again.");
             playRound();
-        }        
+        }
         else if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
             playRound();
         }
         else {
-            const computerWin = "Computer win!";
-            const humanWin = "You win!"
-            
             switch (isRock(humanChoice) && isScissors(computerChoice) ||
             isPaper(humanChoice) && isRock(computerChoice) ||
             isScissors(humanChoice) && isPaper(computerChoice)) {
                 case true:
-                    showWinner(humanWin, humanChoice, computerChoice);
+                    showWinner("You win!", humanChoice, computerChoice);
                     addScore("human");
                     showCurrentScore();
                     break;
                 case false:
-                    showWinner(computerWin, computerChoice, humanChoice);
+                    showWinner("Computer win!", computerChoice, humanChoice);
                     addScore("computer");
                     showCurrentScore();
             }
