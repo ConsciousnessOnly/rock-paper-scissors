@@ -3,8 +3,6 @@ const log = console.log;
 playGame();
 
 function playGame() {
-    const humanSelection = getHumanChoice;
-    const computerSelection = getComputerChoice;
     let humanScore = 0;
     let computerScore = 0;
 
@@ -16,7 +14,7 @@ function playGame() {
 
         while (round <= 5) {
             console.group(`Round: ${round}`)
-            playRound(humanSelection(), computerSelection());
+            playRound();
             console.groupEnd(`Round: ${round}`)
             round++;
         }
@@ -44,10 +42,10 @@ function playGame() {
     // displayWinner(3, 3);
     // displayWinner(2, 2);
 
-    function playRound(humanChoice, computerChoice) {
+    function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
         if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
-            playRound(humanSelection(), computerSelection());
+            playRound();
         }
         else {
             const computerWin = "Computer win!";
