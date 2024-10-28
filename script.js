@@ -45,35 +45,31 @@ function playGame() {
     // displayWinner(2, 2);
 
     function playRound(humanChoice, computerChoice) {
-        const computerWin = "Computer win!";
-        const humanWin = "You win!"
-        const rockWin = "✊🏻 beats ✌🏻";
-        const paperWin = "🖐🏻 beats ✊🏻";
-        const scissorsWin = "✌🏻 beats 🖐🏻";
-
         if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
             playRound(humanSelection(), computerSelection());
         }
         else {
+            const computerWin = "Computer win!";
+            const humanWin = "You win!"
+            
             switch (humanChoice === "rock" && computerChoice === "scissors" ||
             humanChoice === "paper" && computerChoice === "rock" ||
             humanChoice === "scissors" && computerChoice === "paper") {
                 case true:
-                    // showWinner(humanWin, humanChoice, computerChoice);
-                    log(`${humanWin} ${humanChoice} bests ${computerChoice}`);
+                    showWinner(humanWin, humanChoice, computerChoice);
                     addHumanScore();
                     showCurrentScore();
                     break;
                 case false:
-                    log(`${computerWin} ${computerChoice} bests ${humanChoice}`);
+                    showWinner(computerWin, computerChoice, humanChoice);
                     addComputerScore();
                     showCurrentScore();
             }
         }
 
-        function showWinner(msgWinner, msgSelection) {
-            log(msgWinner + msgSelection);
+        function showWinner(msgWinner, winnerChoice, loserChoice) {
+            log(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
         }
 
         function showCurrentScore() {
