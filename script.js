@@ -8,10 +8,10 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    // startRound();
-    // displayWinner(humanScore, computerScore);
+    startRound();
+    displayWinner(humanScore, computerScore);
 
-    function startRound(){        
+    function startRound() {
         let round = 1;
 
         while (round <= 5) {
@@ -20,7 +20,7 @@ function playGame() {
             console.groupEnd(`Round: ${round}`)
             round++;
         }
-    }    
+    }
 
     function displayWinner(humanScore, computerScore) {
         console.group("😇 Final score 😇")
@@ -45,8 +45,8 @@ function playGame() {
     // displayWinner(2, 2);
 
     function playRound(humanChoice, computerChoice) {
-        const computerWin = "Computer win! ";
-        const humanWin = "You win! "
+        const computerWin = "Computer win!";
+        const humanWin = "You win!"
         const rockWin = "✊🏻 beats ✌🏻";
         const paperWin = "🖐🏻 beats ✊🏻";
         const scissorsWin = "✌🏻 beats 🖐🏻";
@@ -55,46 +55,20 @@ function playGame() {
             log("It’s a tie; play again.");
             playRound(humanSelection(), computerSelection());
         }
-        else if (humanChoice === "rock") {
-            switch (computerChoice) {
-                case "paper":
-                    showWinner(computerWin, paperWin);
-                    addComputerScore();
-                    showCurrentScore();
-                    break;
-                case "scissors":
-                    showWinner(humanWin, rockWin);
+        else {
+            switch (humanChoice === "rock" && computerChoice === "scissors" ||
+            humanChoice === "paper" && computerChoice === "rock" ||
+            humanChoice === "scissors" && computerChoice === "paper") {
+                case true:
+                    // showWinner(humanWin, humanChoice, computerChoice);
+                    log(`${humanWin} ${humanChoice} bests ${computerChoice}`);
                     addHumanScore();
                     showCurrentScore();
                     break;
-            }
-        }
-        else if (humanChoice === "paper") {
-            switch (computerChoice) {
-                case "scissors":
-                    showWinner(computerWin, scissorsWin);
+                case false:
+                    log(`${computerWin} ${computerChoice} bests ${humanChoice}`);
                     addComputerScore();
                     showCurrentScore();
-                    break;
-                case "rock":
-                    showWinner(humanWin, paperWin);
-                    addHumanScore();
-                    showCurrentScore();
-                    break;
-            }
-        }
-        else if (humanChoice === "scissors") {
-            switch (computerChoice) {
-                case "rock":
-                    showWinner(computerWin, rockWin);
-                    addComputerScore();
-                    showCurrentScore();
-                    break;
-                case "paper":
-                    showWinner(humanWin, paperWin);
-                    addHumanScore();
-                    showCurrentScore();
-                    break;
             }
         }
 
@@ -136,13 +110,13 @@ function playGame() {
         playRound("rock", null);
         playRound("paper", null);
         playRound("scissors", null);
-    }    
+    }
 
     function getComputerChoice() {
         const number = Math.floor(Math.random() * 3);
         // log("Random number is : " + number);
 
-        switch(number){
+        switch (number) {
             case 0:
                 log("Computer choose: ✊🏻");
                 return "rock"
@@ -162,12 +136,12 @@ function playGame() {
             log(getComputerChoice());
             count++;
         }
-    }    
+    }
 
     // log(getHumanChoice());
     function getHumanChoice() {
         let humanChoice = prompt("Please choose from Rock, Paper, Scissors", '');
-        
+
         if (isEmpty(humanChoice)) {
             log('You Input Empty, please Input again.');
             return getHumanChoice();
@@ -186,15 +160,15 @@ function playGame() {
         function isEmpty(string) {
             return !string
         }
-    
+
         function isRock(string) {
             return (string.toLowerCase() === 'rock') ? true : false;
         }
-    
+
         function isPaper(string) {
             return (string.toLowerCase() === 'paper') ? true : false;
         }
-    
+
         function isScissors(string) {
             return (string.toLowerCase() === 'scissors') ? true : false;
         }
