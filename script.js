@@ -42,6 +42,7 @@ function playGame() {
     // displayWinner(3, 3);
     // displayWinner(2, 2);
 
+    playRound();
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
         if(isEmpty(humanChoice) || isEmpty(computerChoice)) {
             log("Input is empty! Try again.");
@@ -60,12 +61,12 @@ function playGame() {
             isScissors(humanChoice) && isPaper(computerChoice)) {
                 case true:
                     showWinner(humanWin, humanChoice, computerChoice);
-                    addHumanScore();
+                    addScore("human");
                     showCurrentScore();
                     break;
                 case false:
                     showWinner(computerWin, computerChoice, humanChoice);
-                    addComputerScore();
+                    addScore("computer");
                     showCurrentScore();
             }
         }
@@ -78,12 +79,8 @@ function playGame() {
             log(`Human: ${humanScore} vs Computer: ${computerScore}`);
         }
 
-        function addComputerScore() {
-            computerScore += 1;
-        }
-
-        function addHumanScore() {
-            humanScore += 1;
+        function addScore(identity) {
+            identity === "human" ? humanScore += 1 : computerScore += 1;
         }
     }
 
