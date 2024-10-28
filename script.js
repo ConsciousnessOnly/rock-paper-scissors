@@ -144,13 +144,13 @@ function playGame() {
 
         switch(number){
             case 0:
-                log("Computer choose: rock");
+                log("Computer choose: ✊🏻");
                 return "rock"
             case 1:
-                log("Computer choose: paper");
+                log("Computer choose: 🖐🏻");
                 return "paper"
             case 2:
-                log("Computer choose: scissors");
+                log("Computer choose: ✌🏻");
                 return "scissors"
         }
     }
