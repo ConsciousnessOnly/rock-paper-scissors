@@ -6,8 +6,8 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    // startRound();
-    // displayWinner(humanScore, computerScore);
+    startRound();
+    displayWinner(humanScore, computerScore);
 
     function startRound() {
         let round = 1;
@@ -37,12 +37,7 @@ function playGame() {
         }
         console.groupEnd("😇 Final score 😇");
     }
-    // displayWinner(3, 2);
-    // displayWinner(2, 3);
-    // displayWinner(3, 3);
-    // displayWinner(2, 2);
 
-    // playRound();
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
         if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
             log("Input is empty! Try again.");
@@ -82,29 +77,6 @@ function playGame() {
         }
     }
 
-    // testPlayRound();
-    function testPlayRound() {
-        playRound("rock", "rock");
-        playRound("rock", "paper");
-        playRound("rock", "scissors");
-
-        playRound("paper", "rock");
-        playRound("paper", "paper");
-        playRound("paper", "scissors");
-
-        playRound("scissors", "rock");
-        playRound("scissors", "paper");
-        playRound("scissors", "scissors");
-
-        playRound(null, "rock");
-        playRound(null, "paper");
-        playRound(null, "scissors");
-
-        playRound("rock", null);
-        playRound("paper", null);
-        playRound("scissors", null);
-    }
-
     function getComputerChoice() {
         const number = Math.floor(Math.random() * 3);
         // log("Random number is : " + number);
@@ -121,17 +93,7 @@ function playGame() {
                 return "scissors"
         }
     }
-
-    // testComputerChoice();
-    function testComputerChoice() {
-        let count = 1;
-        while (count <= 30) {
-            log(getComputerChoice());
-            count++;
-        }
-    }
-
-    // log(getHumanChoice());
+   
     function getHumanChoice() {
         let humanChoice = prompt("Please choose from Rock, Paper, Scissors", '');
 
