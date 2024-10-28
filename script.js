@@ -47,9 +47,9 @@ function playGame() {
     function playRound(humanChoice, computerChoice) {
         const computerWin = "Computer win! ";
         const humanWin = "You win! "
-        const rockWin = "Rock beats Scissors";
-        const paperWin = "Paper beats Rock";
-        const scissorsWin = "Scissors beats Paper";
+        const rockWin = "✊🏻 beats ✌🏻";
+        const paperWin = "🖐🏻 beats ✊🏻";
+        const scissorsWin = "✌🏻 beats 🖐🏻";
 
         if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
