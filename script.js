@@ -6,8 +6,8 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    startRound();
-    displayWinner(humanScore, computerScore);
+    // startRound();
+    // displayWinner(humanScore, computerScore);
 
     function startRound() {
         let round = 1;
@@ -43,7 +43,11 @@ function playGame() {
     // displayWinner(2, 2);
 
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
-        if (humanChoice === computerChoice) {
+        if(!humanChoice || !computerChoice) {
+            log("Input is empty! Try again.");
+            playRound();
+        }        
+        else if (humanChoice === computerChoice) {
             log("It’s a tie; play again.");
             playRound();
         }
