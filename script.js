@@ -139,7 +139,8 @@ function playGame() {
             log('You Input Empty, please Input again.');
             return getHumanChoice();
         }
-        else if (isRock(humanChoice) ||
+        else if (
+            isRock(humanChoice) ||
             isPaper(humanChoice) ||
             isScissors(humanChoice)) {
             log(`You Input ${humanChoice}.`);
