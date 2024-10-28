@@ -43,7 +43,7 @@ function playGame() {
     // displayWinner(2, 2);
 
     function playRound(humanChoice = getHumanChoice(), computerChoice = getComputerChoice()) {
-        if(!humanChoice || !computerChoice) {
+        if(isEmpty(humanChoice) || isEmpty(computerChoice)) {
             log("Input is empty! Try again.");
             playRound();
         }        
@@ -55,9 +55,9 @@ function playGame() {
             const computerWin = "Computer win!";
             const humanWin = "You win!"
             
-            switch (humanChoice === "rock" && computerChoice === "scissors" ||
-            humanChoice === "paper" && computerChoice === "rock" ||
-            humanChoice === "scissors" && computerChoice === "paper") {
+            switch (isRock(humanChoice) && isScissors(computerChoice) ||
+            isPaper(humanChoice) && isRock(computerChoice) ||
+            isScissors(humanChoice) && isPaper(computerChoice)) {
                 case true:
                     showWinner(humanWin, humanChoice, computerChoice);
                     addHumanScore();
@@ -154,21 +154,21 @@ function playGame() {
             log("Input again!");
             return getHumanChoice();
         }
+    }
 
-        function isEmpty(string) {
-            return !string
-        }
+    function isEmpty(string) {
+        return !string
+    }
 
-        function isRock(string) {
-            return (string.toLowerCase() === 'rock') ? true : false;
-        }
+    function isRock(string) {
+        return (string.toLowerCase() === 'rock') ? true : false;
+    }
 
-        function isPaper(string) {
-            return (string.toLowerCase() === 'paper') ? true : false;
-        }
+    function isPaper(string) {
+        return (string.toLowerCase() === 'paper') ? true : false;
+    }
 
-        function isScissors(string) {
-            return (string.toLowerCase() === 'scissors') ? true : false;
-        }
+    function isScissors(string) {
+        return (string.toLowerCase() === 'scissors') ? true : false;
     }
 }
