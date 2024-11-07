@@ -123,8 +123,8 @@ function closeEventListener() {
 }
 function displayWinner() {
     displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
-    
+
     (humanScore > computerScore) ? 
     displayMessage("🏆 The Winner is: Human! 🏆") :
-    displayMessage("🏆 The Winner is: Computer! 🏆");    
+    displayMessage("🏆 The Winner is: Computer! 🏆");
 }
