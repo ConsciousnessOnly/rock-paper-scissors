@@ -2,51 +2,60 @@ const log = console.log;
 
 const btnRock = document.querySelector("#rock");
 btnRock.addEventListener("click", () => {
-    log("You choose: ✊🏻");
+    displayMessage("You choose: ✊🏻")
     playRound("rock");
 });
 
 const btnPaper = document.querySelector("#paper");
 btnPaper.addEventListener("click", () => {
-    log("You choose: 🖐🏻");
+    displayMessage("You choose: 🖐🏻")
     playRound("paper");
 });
 
 const btnScissors = document.querySelector("#scissors");
 btnScissors.addEventListener("click", () => {
-    log("You choose: ✌🏻");
+    displayMessage("You choose: ✌🏻");
     playRound("scissors");
 });
 
 let humanScore = 0;
 let computerScore = 0;
 
+const body = document.querySelector("body");
+const div = document.createElement("div");
+
+body.appendChild(div);
+
+function displayMessage(msg = ""){
+    const message = document.createElement("p");
+    message.textContent = msg;
+    div.appendChild(message);
+}
+
 function displayWinner(humanScore, computerScore) {
     console.group("😇 Final score 😇")
-    log(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
+    displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
     if (humanScore + computerScore === 5) {
         if (humanScore > computerScore) {
-            log("🏆 The Winner is: Human! 🏆");
+            displayMessage("🏆 The Winner is: Human! 🏆");
         }
         else if (computerScore > humanScore) {
-            log("🏆 The Winner is: Computer! 🏆");
+            displayMessage("🏆 The Winner is: Computer! 🏆");
         }
     }
     else {
-        log("What's going on? 😱 The total scores (human + computer) must equal 5...");
+        displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
     }
     console.groupEnd("😇 Final score 😇");
 } 
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
     if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
-        log("Input is empty! Try again.");
-        // playRound();            
+        displayMessage("Input is empty! Try again.");
     }
     else if (humanChoice === computerChoice) {
-        log("It’s a tie; play again.");
-        // playRound();
+        displayMessage("It’s a tie; play again.");
     }
     else {
         switch (
@@ -66,11 +75,11 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
     }
 
     function showWinner(msgWinner, winnerChoice, loserChoice) {
-        log(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
+        displayMessage(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
     }
 
     function showCurrentScore() {
-        log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+        displayMessage(`Human: ${humanScore} vs Computer: ${computerScore}`);
     }
 
     function addScore(identity) {
@@ -80,17 +89,16 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
 
 function getComputerChoice() {
     const number = Math.floor(Math.random() * 3);
-    // log("Random number is : " + number);
 
     switch (number) {
         case 0:
-            log("Computer choose: ✊🏻");
+            displayMessage("Computer choose: ✊🏻");
             return "rock"
         case 1:
-            log("Computer choose: 🖐🏻");
+            displayMessage("Computer choose: 🖐🏻");
             return "paper"
         case 2:
-            log("Computer choose: ✌🏻");
+            displayMessage("Computer choose: ✌🏻");
             return "scissors"
     }
 }
@@ -99,18 +107,18 @@ function getHumanChoice() {
     let humanChoice = prompt("Please choose from Rock, Paper, Scissors", '');
 
     if (isEmpty(humanChoice)) {
-        log('You Input Empty, please Input again.');
+        displayMessage('You Input Empty, please Input again.');
         // return getHumanChoice();
     }
     else if (
         isRock(humanChoice) ||
         isPaper(humanChoice) ||
         isScissors(humanChoice)) {
-        log(`You Input ${humanChoice}.`);
+        displayMessage(`You Input ${humanChoice}.`);
         return humanChoice.toLowerCase();
     }
     else {
-        log("Input again!");
+        displayMessage("Input again!");
         return getHumanChoice();
     }
 }
