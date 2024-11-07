@@ -123,16 +123,8 @@ function closeEventListener() {
 }
 function displayWinner() {
     displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
-
-    if (humanScore + computerScore === 5) {
-        if (humanScore > computerScore) {
-            displayMessage("🏆 The Winner is: Human! 🏆");
-        }
-        else if (computerScore > humanScore) {
-            displayMessage("🏆 The Winner is: Computer! 🏆");
-        }
-    }
-    else {
-        displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
-    }
+    
+    (humanScore > computerScore) ? 
+    displayMessage("🏆 The Winner is: Human! 🏆") :
+    displayMessage("🏆 The Winner is: Computer! 🏆");    
 }
