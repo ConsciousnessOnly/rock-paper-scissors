@@ -28,12 +28,6 @@ const body = document.querySelector("body");
 const div = document.createElement("div");
 body.appendChild(div);
 
-function displayMessage(msg = "") {
-    const message = document.createElement("p");
-    message.textContent = msg;
-    div.appendChild(message);
-}
-
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
     if (humanChoice === computerChoice) {
         displayMessage("It’s a tie; play again.");
@@ -54,7 +48,6 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
                 break;
         }
     }
-
     function isHumanWin() {
         if (isRock(humanChoice) && isScissors(computerChoice) ||
             isPaper(humanChoice) && isRock(computerChoice) ||
@@ -65,48 +58,6 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
             return false;
         }
     }
-
-    function showWinner(msgWinner, winnerChoice, loserChoice) {
-        displayMessage(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
-    }
-
-    function addScore(identity) {
-        identity === "human" ? humanScore += 1 : computerScore += 1;
-    }
-
-    function showCurrentScore() {
-        displayMessage(`Human: ${humanScore} vs Computer: ${computerScore}`);
-    }
-
-    function determineGameOver() {
-        if (isGameOver()) {
-            closeEventListener();
-            displayWinner();
-        }
-    }
-    function isGameOver() {
-        return (humanScore + computerScore === 5) ? true : false;
-    }
-    function closeEventListener() {
-        btnRock.removeEventListener("click", chooseRock);
-        btnPaper.removeEventListener("click", choosePaper);
-        btnScissors.removeEventListener("click", chooseScissors);
-    }
-    function displayWinner() {
-        displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
-
-        if (humanScore + computerScore === 5) {
-            if (humanScore > computerScore) {
-                displayMessage("🏆 The Winner is: Human! 🏆");
-            }
-            else if (computerScore > humanScore) {
-                displayMessage("🏆 The Winner is: Computer! 🏆");
-            }
-        }
-        else {
-            displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
-        }
-    }    
 }
 
 function getComputerChoice() {
@@ -125,18 +76,63 @@ function getComputerChoice() {
     }
 }
 
+function displayMessage(msg = "") {
+    const message = document.createElement("p");
+    message.textContent = msg;
+    div.appendChild(message);
+}
+
 function isEmpty(string) {
     return !string
 }
-
 function isRock(string) {
     return (string.toLowerCase() === 'rock') ? true : false;
 }
-
 function isPaper(string) {
     return (string.toLowerCase() === 'paper') ? true : false;
 }
-
 function isScissors(string) {
     return (string.toLowerCase() === 'scissors') ? true : false;
+}
+
+function showWinner(msgWinner, winnerChoice, loserChoice) {
+    displayMessage(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
+}
+
+function addScore(identity) {
+    identity === "human" ? humanScore += 1 : computerScore += 1;
+}
+
+function showCurrentScore() {
+    displayMessage(`Human: ${humanScore} vs Computer: ${computerScore}`);
+}
+
+function determineGameOver() {
+    if (isGameOver()) {
+        closeEventListener();
+        displayWinner();
+    }
+}
+function isGameOver() {
+    return (humanScore + computerScore === 5) ? true : false;
+}
+function closeEventListener() {
+    btnRock.removeEventListener("click", chooseRock);
+    btnPaper.removeEventListener("click", choosePaper);
+    btnScissors.removeEventListener("click", chooseScissors);
+}
+function displayWinner() {
+    displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
+
+    if (humanScore + computerScore === 5) {
+        if (humanScore > computerScore) {
+            displayMessage("🏆 The Winner is: Human! 🏆");
+        }
+        else if (computerScore > humanScore) {
+            displayMessage("🏆 The Winner is: Computer! 🏆");
+        }
+    }
+    else {
+        displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
+    }
 }
