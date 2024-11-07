@@ -125,26 +125,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Please choose from Rock, Paper, Scissors", '');
-
-    if (isEmpty(humanChoice)) {
-        displayMessage('You Input Empty, please Input again.');
-        // return getHumanChoice();
-    }
-    else if (
-        isRock(humanChoice) ||
-        isPaper(humanChoice) ||
-        isScissors(humanChoice)) {
-        displayMessage(`You Input ${humanChoice}.`);
-        return humanChoice.toLowerCase();
-    }
-    else {
-        displayMessage("Input again!");
-        return getHumanChoice();
-    }
-}
-
 function isEmpty(string) {
     return !string
 }
