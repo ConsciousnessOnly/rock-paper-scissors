@@ -35,10 +35,7 @@ function displayMessage(msg = "") {
 }
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
-    if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
-        displayMessage("Input is empty! Try again.");
-    }
-    else if (humanChoice === computerChoice) {
+    if (humanChoice === computerChoice) {
         displayMessage("It’s a tie; play again.");
     }
     else {
@@ -50,22 +47,24 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
                 showWinner("You win!", humanChoice, computerChoice);
                 addScore("human");
                 showCurrentScore();
-                if (isGameOver()) {
-                    closeEventListener();
-                    displayWinner();
-                }
+                determineGameOver();
                 break;
             case false:
                 showWinner("Computer win!", computerChoice, humanChoice);
                 addScore("computer");
                 showCurrentScore();
-                if (isGameOver()) {
-                    closeEventListener();
-                    displayWinner();
-                }
+                determineGameOver();               
                 break;
         }
     }
+
+    function determineGameOver() {
+        if (isGameOver()) {
+            closeEventListener();
+            displayWinner();
+        }
+    }
+
     function displayWinner() {
         console.group("😇 Final score 😇")
         displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
@@ -89,7 +88,6 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         btnPaper.removeEventListener("click", choosePaper);
         btnScissors.removeEventListener("click", chooseScissors);
     }
-
 
     function isGameOver() {
         return (humanScore + computerScore === 5) ? true : false;
