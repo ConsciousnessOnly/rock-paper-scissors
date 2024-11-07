@@ -58,13 +58,48 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         }
     }
 
+    function getComputerChoice() {
+        const number = Math.floor(Math.random() * 3);
+    
+        switch (number) {
+            case 0:
+                displayMessage("Computer choose: ✊🏻");
+                return "rock"
+            case 1:
+                displayMessage("Computer choose: 🖐🏻");
+                return "paper"
+            case 2:
+                displayMessage("Computer choose: ✌🏻");
+                return "scissors"
+        }
+    }
+
+    function showWinner(msgWinner, winnerChoice, loserChoice) {
+        displayMessage(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
+    }
+
+    function addScore(identity) {
+        identity === "human" ? humanScore += 1 : computerScore += 1;
+    }
+
+    function showCurrentScore() {
+        displayMessage(`Human: ${humanScore} vs Computer: ${computerScore}`);
+    }
+
     function determineGameOver() {
         if (isGameOver()) {
             closeEventListener();
             displayWinner();
         }
     }
-
+    function isGameOver() {
+        return (humanScore + computerScore === 5) ? true : false;
+    }
+    function closeEventListener() {
+        btnRock.removeEventListener("click", chooseRock);
+        btnPaper.removeEventListener("click", choosePaper);
+        btnScissors.removeEventListener("click", chooseScissors);
+    }
     function displayWinner() {
         displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
@@ -79,45 +114,7 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         else {
             displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
         }
-    }
-
-    function closeEventListener() {
-        btnRock.removeEventListener("click", chooseRock);
-        btnPaper.removeEventListener("click", choosePaper);
-        btnScissors.removeEventListener("click", chooseScissors);
-    }
-
-    function isGameOver() {
-        return (humanScore + computerScore === 5) ? true : false;
-    }
-
-    function showWinner(msgWinner, winnerChoice, loserChoice) {
-        displayMessage(`${msgWinner} ${winnerChoice} bests ${loserChoice}`);
-    }
-
-    function showCurrentScore() {
-        displayMessage(`Human: ${humanScore} vs Computer: ${computerScore}`);
-    }
-
-    function addScore(identity) {
-        identity === "human" ? humanScore += 1 : computerScore += 1;
-    }
-}
-
-function getComputerChoice() {
-    const number = Math.floor(Math.random() * 3);
-
-    switch (number) {
-        case 0:
-            displayMessage("Computer choose: ✊🏻");
-            return "rock"
-        case 1:
-            displayMessage("Computer choose: 🖐🏻");
-            return "paper"
-        case 2:
-            displayMessage("Computer choose: ✌🏻");
-            return "scissors"
-    }
+    }    
 }
 
 function isEmpty(string) {
