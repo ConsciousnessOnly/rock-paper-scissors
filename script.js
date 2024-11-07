@@ -39,10 +39,7 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         displayMessage("It’s a tie; play again.");
     }
     else {
-        switch (
-        isRock(humanChoice) && isScissors(computerChoice) ||
-        isPaper(humanChoice) && isRock(computerChoice) ||
-        isScissors(humanChoice) && isPaper(computerChoice)) {
+        switch (isHumanWin()) {
             case true:
                 showWinner("You win!", humanChoice, computerChoice);
                 addScore("human");
@@ -58,19 +55,14 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         }
     }
 
-    function getComputerChoice() {
-        const number = Math.floor(Math.random() * 3);
-    
-        switch (number) {
-            case 0:
-                displayMessage("Computer choose: ✊🏻");
-                return "rock"
-            case 1:
-                displayMessage("Computer choose: 🖐🏻");
-                return "paper"
-            case 2:
-                displayMessage("Computer choose: ✌🏻");
-                return "scissors"
+    function isHumanWin() {
+        if (isRock(humanChoice) && isScissors(computerChoice) ||
+            isPaper(humanChoice) && isRock(computerChoice) ||
+            isScissors(humanChoice) && isPaper(computerChoice)){
+                return true;
+            }
+        else {
+            return false;
         }
     }
 
@@ -115,6 +107,22 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
             displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
         }
     }    
+}
+
+function getComputerChoice() {
+    const number = Math.floor(Math.random() * 3);
+
+    switch (number) {
+        case 0:
+            displayMessage("Computer choose: ✊🏻");
+            return "rock"
+        case 1:
+            displayMessage("Computer choose: 🖐🏻");
+            return "paper"
+        case 2:
+            displayMessage("Computer choose: ✌🏻");
+            return "scissors"
+    }
 }
 
 function isEmpty(string) {
