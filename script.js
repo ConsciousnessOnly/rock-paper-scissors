@@ -66,7 +66,6 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
     }
 
     function displayWinner() {
-        console.group("😇 Final score 😇")
         displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
 
         if (humanScore + computerScore === 5) {
@@ -80,7 +79,6 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         else {
             displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
         }
-        console.groupEnd("😇 Final score 😇");
     }
 
     function closeEventListener() {
