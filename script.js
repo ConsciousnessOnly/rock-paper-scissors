@@ -1,22 +1,25 @@
 const log = console.log;
 
 const btnRock = document.querySelector("#rock");
-btnRock.addEventListener("click", () => {
-    displayMessage("You choose: ✊🏻")
+btnRock.addEventListener("click", chooseRock);
+function chooseRock() {
+    displayMessage("You choose: ✊🏻");
     playRound("rock");
-});
+}
 
 const btnPaper = document.querySelector("#paper");
-btnPaper.addEventListener("click", () => {
-    displayMessage("You choose: 🖐🏻")
+btnPaper.addEventListener("click", choosePaper);
+function choosePaper() {
+    displayMessage("You choose: 🖐🏻");
     playRound("paper");
-});
+}
 
 const btnScissors = document.querySelector("#scissors");
-btnScissors.addEventListener("click", () => {
+btnScissors.addEventListener("click", chooseScissors);
+function chooseScissors() {
     displayMessage("You choose: ✌🏻");
     playRound("scissors");
-});
+}
 
 let humanScore = 0;
 let computerScore = 0;
@@ -26,29 +29,11 @@ const div = document.createElement("div");
 
 body.appendChild(div);
 
-function displayMessage(msg = ""){
+function displayMessage(msg = "") {
     const message = document.createElement("p");
     message.textContent = msg;
     div.appendChild(message);
 }
-
-function displayWinner(humanScore, computerScore) {
-    console.group("😇 Final score 😇")
-    displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
-
-    if (humanScore + computerScore === 5) {
-        if (humanScore > computerScore) {
-            displayMessage("🏆 The Winner is: Human! 🏆");
-        }
-        else if (computerScore > humanScore) {
-            displayMessage("🏆 The Winner is: Computer! 🏆");
-        }
-    }
-    else {
-        displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
-    }
-    console.groupEnd("😇 Final score 😇");
-} 
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
     if (isEmpty(humanChoice) || isEmpty(computerChoice)) {
@@ -66,12 +51,49 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
                 showWinner("You win!", humanChoice, computerChoice);
                 addScore("human");
                 showCurrentScore();
+                if (isGameOver()) {
+                    closeEventListener();
+                    displayWinner();
+                }
                 break;
             case false:
                 showWinner("Computer win!", computerChoice, humanChoice);
                 addScore("computer");
                 showCurrentScore();
+                if (isGameOver()) {
+                    closeEventListener();
+                    displayWinner();
+                }
+                break;
         }
+    }
+    function displayWinner() {
+        console.group("😇 Final score 😇")
+        displayMessage(`👶 Human: ${humanScore} vs 💻 Computer: ${computerScore}`);
+
+        if (humanScore + computerScore === 5) {
+            if (humanScore > computerScore) {
+                displayMessage("🏆 The Winner is: Human! 🏆");
+            }
+            else if (computerScore > humanScore) {
+                displayMessage("🏆 The Winner is: Computer! 🏆");
+            }
+        }
+        else {
+            displayMessage("What's going on? 😱 The total scores (human + computer) must equal 5...");
+        }
+        console.groupEnd("😇 Final score 😇");
+    }
+
+    function closeEventListener() {
+        btnRock.removeEventListener("click", chooseRock);
+        btnPaper.removeEventListener("click", choosePaper);
+        btnScissors.removeEventListener("click", chooseScissors);
+    }
+
+
+    function isGameOver() {
+        return (humanScore + computerScore === 5) ? true : false;
     }
 
     function showWinner(msgWinner, winnerChoice, loserChoice) {
